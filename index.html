@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>THE ETERNAL | VAMP @MCGEP</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,300;0,600;1,100&family=Great+Vibes&family=Bad+Script&family=Cinzel:wght@400;900&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&display=swap" rel="stylesheet">
+
+    <style>
+        /* VAMP EMOTIONAL ARCHITECTURE v6.0 
+           Engineered for maximum aesthetic impact.
+        */
+
+        :root {
+            --base: #fffcf9;
+            --paper-texture: #faf7f2;
+            --gold: #d4a373;
+            --rose-dust: #bc6c74;
+            --ink: #2d2621;
+            --glass: rgba(255, 255, 255, 0.7);
+            --shadow-soft: rgba(93, 64, 55, 0.08);
+            --transition-master: all 2.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+        }
+
+        body, html {
+            width: 100%;
+            height: 100%;
+            background: var(--base);
+            color: var(--ink);
+            font-family: 'Cormorant Garamond', serif;
+            overflow: hidden;
+            cursor: none;
+        }
+
+        /* --- ADVANCED WATERMARK GRID --- */
+        #wm-grid {
+            position: fixed;
+            inset: -20%;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            gap: 50px;
+            pointer-events: none;
+            opacity: 0.03;
+            transform: rotate(-15deg);
+        }
+
+        .wm-tag {
+            font-family: 'Montserrat';
+            font-weight: 700;
+            font-size: 1.1rem;
+            white-space: nowrap;
+            letter-spacing: 2px;
+            transition: opacity 1s ease;
+        }
+
+        /* --- DYNAMIC BACKGROUND & FX --- */
+        #particle-canvas {
+            position: fixed;
+            inset: 0;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .light-bloom {
+            position: fixed;
+            width: 100vh;
+            height: 100vh;
+            background: radial-gradient(circle, rgba(212, 163, 115, 0.15) 0%, transparent 65%);
+            filter: blur(120px);
+            z-index: 3;
+            pointer-events: none;
+            mix-blend-mode: soft-light;
+        }
+
+        /* --- CUSTOM LUXURY CURSOR --- */
+        .c-pointer {
+            position: fixed;
+            width: 6px;
+            height: 6px;
+            background: var(--rose-dust);
+            border-radius: 50%;
+            z-index: 10000;
+            pointer-events: none;
+        }
+
+        .c-ring {
+            position: fixed;
+            width: 50px;
+            height: 50px;
+            border: 0.5px solid var(--gold);
+            border-radius: 50%;
+            z-index: 9999;
+            pointer-events: none;
+            transition: transform 0.25s cubic-bezier(0.2, 1, 0.2, 1);
+        }
+
+        /* --- THE MASTER STAGE --- */
+        .stage {
+            position: relative;
+            z-index: 10;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 2500px;
+            padding: 20px;
+        }
+
+        .envelope-card {
+            position: relative;
+            width: 100%;
+            max-width: 550px;
+            min-height: 400px;
+            background: var(--paper-texture);
+            backdrop-filter: blur(10px);
+            padding: 80px 50px;
+            box-shadow: 
+                0 60px 150px var(--shadow-soft),
+                0 0 0 1px rgba(212, 163, 115, 0.05);
+            border-radius: 2px;
+            transform-style: preserve-3d;
+            transition: var(--transition-master);
+        }
+
+        .envelope-card::before {
+            content: '';
+            position: absolute;
+            inset: 15px;
+            border: 1px solid var(--gold);
+            opacity: 0.1;
+            pointer-events: none;
+        }
+
+        /* Decor elements */
+        .corner {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border-color: var(--gold);
+            border-style: solid;
+            opacity: 0.2;
+        }
+        .tl { top: 30px; left: 30px; border-width: 1px 0 0 1px; }
+        .tr { top: 30px; right: 30px; border-width: 1px 1px 0 0; }
+        .bl { bottom: 30px; left: 30px; border-width: 0 0 1px 1px; }
+        .br { bottom: 30px; right: 30px; border-width: 0 1px 1px 0; }
+
+        /* --- TYPOGRAPHY --- */
+        .category {
+            font-family: 'Cinzel';
+            font-size: 0.6rem;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 30px;
+            display: block;
+            font-weight: 900;
+        }
+
+        .main-script {
+            font-family: 'Great Vibes', cursive;
+            font-size: 5rem;
+            margin-bottom: 50px;
+            background: linear-gradient(135deg, #5d4037, #bc6c74);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 2px 2px rgba(0,0,0,0.02));
+        }
+
+        /* --- UI COMPONENTS --- */
+        .input-group {
+            position: relative;
+            margin-bottom: 60px;
+        }
+
+        .input-lux {
+            width: 100%;
+            background: none;
+            border: none;
+            border-bottom: 1px solid rgba(212, 163, 115, 0.2);
+            padding: 20px 0;
+            font-family: 'Bad Script', cursive;
+            font-size: 2rem;
+            text-align: center;
+            color: var(--ink);
+            outline: none;
+            transition: 0.6s;
+        }
+
+        .input-lux::placeholder {
+            font-family: 'Cormorant Garamond';
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            opacity: 0.4;
+        }
+
+        .input-lux:focus {
+            border-bottom-color: var(--rose-dust);
+            letter-spacing: 2px;
+        }
+
+        .actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .btn-premium {
+            padding: 25px;
+            background: none;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            font-family: 'Montserrat';
+            font-size: 0.7rem;
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            cursor: pointer;
+            transition: 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .btn-premium:hover {
+            background: white;
+            color: var(--rose-dust);
+            border-color: var(--rose-dust);
+            transform: translateY(-8px) translateZ(30px);
+            box-shadow: 0 20px 40px rgba(188, 108, 116, 0.1);
+        }
+
+        /* --- FINAL LETTER SCENE --- */
+        #final-letter {
+            display: none;
+            opacity: 0;
+            transform: translateZ(-50px);
+            transition: var(--transition-master);
+        }
+
+        .letter-content {
+            font-family: 'Bad Script', cursive;
+            font-size: 1.5rem;
+            line-height: 2;
+            text-align: left;
+            color: #3e2723;
+            margin-bottom: 60px;
+            min-height: 300px;
+        }
+
+        .hand-sig {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3rem;
+            text-align: right;
+            color: var(--rose-dust);
+            opacity: 0.7;
+            margin-top: 20px;
+        }
+
+        /* --- SHARE BUTTON --- */
+        .btn-share {
+            width: 100%;
+            background: var(--rose-dust);
+            color: #fff;
+            padding: 25px;
+            border: none;
+            font-family: 'Montserrat';
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            cursor: pointer;
+            border-radius: 2px;
+            margin-top: 40px;
+            transition: 0.4s;
+        }
+
+        .btn-share:hover {
+            filter: brightness(1.1);
+            transform: scale(1.02);
+        }
+
+        /* --- MOBILE HUD --- */
+        @media (max-width: 600px) {
+            .envelope-card { padding: 60px 25px; border-radius: 0; border: none; }
+            .main-script { font-size: 3.5rem; }
+            .c-pointer, .c-ring { display: none; }
+            .actions { grid-template-columns: 1fr; }
+            .letter-content { font-size: 1.3rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="wm-grid"></div>
+
+    <div class="light-bloom" id="bloom"></div>
+    
+    <div class="c-pointer" id="p"></div>
+    <div class="c-ring" id="r"></div>
+
+    <canvas id="particle-canvas"></canvas>
+
+    <div class="stage">
+        <div class="envelope-card" id="card">
+            <div class="corner tl"></div><div class="corner tr"></div>
+            <div class="corner bl"></div><div class="corner br"></div>
+            
+            <div id="setup">
+                <span class="category">Создай свою валентинку! // 2026</span>
+                <h1 class="main-script">Sincerity</h1>
+                
+                <div class="input-group">
+                    <input type="text" id="target" class="input-lux" placeholder="Его/Её имя" maxlength="18">
+                </div>
+
+                <div class="actions">
+                    <button class="btn-premium" onclick="awaken('boy')">For Him</button>
+                    <button class="btn-premium" onclick="awaken('girl')">For Her</button>
+                </div>
+                
+                <p style="margin-top: 60px; font-size: 0.5rem; letter-spacing: 4px; opacity: 0.3; font-family: 'Montserrat';">COLLECTION BY VAMP @MCGEP</p>
+            </div>
+
+            <div id="final-letter">
+                <div class="letter-content" id="typewriter"></div>
+                <div class="hand-sig">От сердца к сердцу</div>
+                
+                <button class="btn-share" onclick="shareSession()">ПОДЕЛИТЬСЯ МОМЕНТОМ</button>
+                <p style="font-size: 0.6rem; margin-top: 25px; opacity: 0.3; cursor: pointer; text-align: center; font-family: 'Montserrat'; text-transform: uppercase; letter-spacing: 2px;" onclick="location.reload()">Сгенерировать ещё</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /* VAMP PARTICLE & AI ENGINE 
+        */
+
+        // 1. Particle Physics System
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        let mouse = { x: null, y: null };
+
+        function initCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.onresize = initCanvas;
+        initCanvas();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 0.5;
+                this.vX = (Math.random() - 0.5) * 0.5;
+                this.vY = (Math.random() - 0.5) * 0.5;
+                this.alpha = Math.random() * 0.5 + 0.1;
+            }
+            update() {
+                this.x += this.vX;
+                this.y += this.vY;
+                if (mouse.x) {
+                    let dx = mouse.x - this.x;
+                    let dy = mouse.y - this.y;
+                    let dist = Math.sqrt(dx*dx + dy*dy);
+                    if (dist < 150) {
+                        this.x += dx * 0.01;
+                        this.y += dy * 0.01;
+                    }
+                }
+                if (this.x < 0 || this.x > canvas.width) this.vX *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.vY *= -1;
+            }
+            draw() {
+                ctx.fillStyle = `rgba(212, 163, 115, ${this.alpha})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        for(let i=0; i<80; i++) particles.push(new Particle());
+
+        function animate() {
+            ctx.clearRect(0,0, canvas.width, canvas.height);
+            particles.forEach(p => { p.update(); p.draw(); });
+            requestAnimationFrame(animate);
+        }
+        animate();
+
+        // 2. Interaction
+        const bloom = document.getElementById('bloom');
+        const p_dot = document.getElementById('p');
+        const r_dot = document.getElementById('r');
+        const card = document.getElementById('card');
+        const wmGrid = document.getElementById('wm-grid');
+
+        // Fill Watermarks
+        for(let i=0; i<100; i++) {
+            const el = document.createElement('div');
+            el.className = 'wm-tag';
+            el.innerText = 'Vamp @mcgep';
+            wmGrid.appendChild(el);
+        }
+
+        document.addEventListener('mousemove', (e) => {
+            const { clientX: x, clientY: y } = e;
+            mouse.x = x; mouse.y = y;
+            
+            p_dot.style.left = x + 'px'; p_dot.style.top = y + 'px';
+            r_dot.style.left = x - 25 + 'px'; r_dot.style.top = y - 25 + 'px';
+            bloom.style.left = x - window.innerHeight * 0.5 + 'px';
+            bloom.style.top = y - window.innerHeight * 0.5 + 'px';
+
+            const xR = (window.innerHeight / 2 - y) / 45;
+            const yR = (window.innerWidth / 2 - x) / 45;
+            card.style.transform = `rotateX(${xR}deg) rotateY(${-yR}deg)`;
+        });
+
+        // 3. AI Semantic Engine
+        const semantic = {
+            pre: [
+                "В этом суетливом мире есть тишина, которую я нахожу только в мыслях о тебе...",
+                "Иногда слова кажутся слишком простыми, чтобы описать сложность моих чувств.",
+                "Знаешь, я просто хочу, чтобы ты на мгновение почувствовал(а) то, что чувствую я.",
+                "Пишу это письмо, потому что бумага — единственный свидетель того, как трепещет моё сердце."
+            ],
+            core: {
+                boy: [
+                    "Твоя сила — это не про броню, а про ту невероятную нежность, с которой ты умеешь слушать и понимать. Ты — мой дом, где бы я ни находился(ась).",
+                    "В тебе есть удивительная честность, которая заставляет меня верить в лучшее. Ты учишь меня быть собой, не прячась за масками.",
+                    "Твой голос — это лучшая музыка, которую я когда-либо слышал(а). С тобой даже самое громкое молчание наполнено смыслом."
+                ],
+                girl: [
+                    "Твоя красота — это не только то, что видят глаза, но и тот свет, который ты излучаешь. Ты превращаешь обыденность в произведение искусства.",
+                    "В тебе столько жизни и вдохновения, что этого хватило бы, чтобы согреть все мои самые холодные дни. Ты — моё личное чудо.",
+                    "Твои глаза — это целая вселенная, в которой я готов(а) теряться снова и снова. Ты делаешь этот мир по-настоящему живым."
+                ]
+            },
+            post: [
+                "Просто спасибо за то, что ты есть. Ты — самое важное моё 'сейчас'.",
+                "Пусть это письмо согреет тебя тогда, когда меня не будет рядом. Я всегда в твоих мыслях.",
+                "Ты заслуживаешь всей любви этого мира. И даже если её будет мало — я добавлю свою.",
+                "С 14 февраля. Моя любовь к тебе — это путешествие длиною в вечность."
+            ]
+        };
+
+        function awaken(type) {
+            const name = document.getElementById('target').value.trim() || "Душа моя";
+            const setup = document.getElementById('setup');
+            const letter = document.getElementById('final-letter');
+            const typewriter = document.getElementById('typewriter');
+
+            const fullText = `${semantic.pre[Math.floor(Math.random()*semantic.pre.length)]}\n\n${name}, ${semantic.core[type][Math.floor(Math.random()*semantic.core[type].length)]}\n\n${semantic.post[Math.floor(Math.random()*semantic.post.length)]}`;
+
+            setup.style.opacity = '0';
+            setup.style.transform = 'translateZ(-100px)';
+
+            setTimeout(() => {
+                setup.style.display = 'none';
+                letter.style.display = 'block';
+                
+                // Trigger typing
+                write(fullText, typewriter);
+                
+                setTimeout(() => {
+                    letter.style.opacity = '1';
+                    letter.style.transform = 'translateZ(0)';
+                    rain();
+                }, 100);
+            }, 1000);
+
+            // Set Meta
+            const u = new URL(window.location.href);
+            u.searchParams.set('n', name);
+            u.searchParams.set('t', type);
+            window.finalLink = u.toString();
+        }
+
+        function write(text, target) {
+            let i = 0;
+            target.innerHTML = "";
+            function next() {
+                if (i < text.length) {
+                    target.innerHTML += text.charAt(i) === '\n' ? '<br>' : text.charAt(i);
+                    i++;
+                    setTimeout(next, 40);
+                }
+            }
+            next();
+        }
+
+        // 4. Weather System (Rose Petals + Particles)
+        function rain() {
+            setInterval(() => {
+                const el = document.createElement('div');
+                el.style.position = 'fixed';
+                el.style.zIndex = '50';
+                el.style.pointerEvents = 'none';
+                el.style.top = '-10vh';
+                el.style.left = Math.random() * 100 + 'vw';
+                el.style.fontSize = Math.random() * 20 + 10 + 'px';
+                el.innerText = Math.random() > 0.5 ? '🌸' : '🌹';
+                
+                const dur = Math.random() * 3 + 5;
+                el.style.transition = `transform ${dur}s linear, opacity ${dur}s ease-in`;
+                document.body.appendChild(el);
+
+                setTimeout(() => {
+                    el.style.transform = `translateY(110vh) rotate(${Math.random()*360}deg)`;
+                    el.style.opacity = '0';
+                }, 50);
+
+                setTimeout(() => el.remove(), dur * 1000);
+            }, 600);
+        }
+
+        function shareSession() {
+            navigator.clipboard.writeText(window.finalLink || window.location.href).then(() => {
+                alert("Ссылка на это письмо скопирована. Отправь её тому самому человеку...");
+            });
+        }
+
+        // Handle direct links
+        window.onload = () => {
+            const p = new URLSearchParams(window.location.search);
+            if (p.has('n') && p.has('t')) {
+                setTimeout(() => awaken(p.get('t')), 500);
+            }
+        };
+
+    </script>
+</body>
+</html>
