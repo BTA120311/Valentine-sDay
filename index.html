@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>THE ETERNAL | VAMP @MCGEP</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,300;0,600;0,900;1,100&family=Great+Vibes&family=Bad+Script&family=Cinzel:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&family=Playfair+Display:ital,wght@0,900;1,900&display=swap" rel="stylesheet">
+
+    <style>
+        /* VAMP ULTIMATE ARCHITECTURE v8.0 
+           Engineered for: @mcgep
+           Optimization: All Devices (Mobile/Tablet/Desktop)
+        */
+
+        :root {
+            --base: #fffdfa;
+            --paper-texture: #faf7f2;
+            --gold-primary: #d4a373;
+            --gold-vivid: #b5835a;
+            --rose-dust: #bc6c74;
+            --ink: #1a1614; /* Сделал чернила темнее для контраста */
+            --glass-white: rgba(255, 255, 255, 0.85);
+            --shadow-deep: rgba(45, 30, 20, 0.15);
+            --transition-ultra: all 1.8s cubic-bezier(0.2, 1, 0.2, 1);
+            --glow: 0 0 15px rgba(212, 163, 115, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+        }
+
+        body, html {
+            width: 100%;
+            height: 100%;
+            background: var(--base);
+            color: var(--ink);
+            font-family: 'Cormorant Garamond', serif;
+            overflow: hidden;
+            /* Имитация текстуры бумаги на всем фоне */
+            background-image: url('https://www.transparenttextures.com/patterns/cream-paper.png');
+        }
+
+        /* --- VAMP WATERMARK SYSTEM (SMART GRID) --- */
+        #wm-grid {
+            position: fixed;
+            inset: -25%;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 60px;
+            pointer-events: none;
+            opacity: 0.04;
+            transform: rotate(-12deg);
+            will-change: transform;
+        }
+
+        .wm-tag {
+            font-family: 'Montserrat';
+            font-weight: 900;
+            font-size: 1.3rem;
+            color: var(--gold-primary);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            text-shadow: var(--glow);
+            animation: pulse-wm 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes pulse-wm {
+            from { opacity: 0.4; filter: blur(1px); }
+            to { opacity: 1; filter: blur(0); }
+        }
+
+        /* --- DYNAMIC FX LAYERS --- */
+        #particle-canvas {
+            position: fixed;
+            inset: 0;
+            z-index: 2;
+            pointer-events: none;
+            mix-blend-mode: multiply;
+        }
+
+        .light-bloom {
+            position: fixed;
+            width: 80vmax;
+            height: 80vmax;
+            background: radial-gradient(circle, rgba(212, 163, 115, 0.2) 0%, transparent 70%);
+            filter: blur(100px);
+            z-index: 3;
+            pointer-events: none;
+            will-change: transform;
+        }
+
+        /* --- CURSOR (AUTO-HIDE ON MOBILE) --- */
+        .c-pointer {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background: var(--rose-dust);
+            border-radius: 50%;
+            z-index: 10000;
+            pointer-events: none;
+            box-shadow: 0 0 10px var(--rose-dust);
+        }
+
+        .c-ring {
+            position: fixed;
+            width: 44px;
+            height: 44px;
+            border: 1px solid var(--gold-primary);
+            border-radius: 50%;
+            z-index: 9999;
+            pointer-events: none;
+            transition: transform 0.15s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+        }
+
+        /* --- ADAPTIVE STAGE --- */
+        .stage {
+            position: relative;
+            z-index: 10;
+            height: 100dvh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 2000px;
+            padding: 15px;
+        }
+
+        .envelope-card {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            background: var(--glass-white);
+            padding: 5vmax;
+            border-radius: 4px;
+            box-shadow: 
+                0 30px 100px var(--shadow-deep),
+                inset 0 0 50px rgba(255,255,255,0.5);
+            border: 1px solid rgba(212, 163, 115, 0.2);
+            transform-style: preserve-3d;
+            transition: var(--transition-ultra);
+            overflow: hidden;
+        }
+
+        /* Усиливаем углы (Vamp Design) */
+        .corner {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border-color: var(--gold-primary);
+            border-style: solid;
+            opacity: 0.4;
+            z-index: 5;
+        }
+        .tl { top: 20px; left: 20px; border-width: 2px 0 0 2px; }
+        .tr { top: 20px; right: 20px; border-width: 2px 2px 0 0; }
+        .bl { bottom: 20px; left: 20px; border-width: 0 0 2px 2px; }
+        .br { bottom: 20px; right: 20px; border-width: 0 2px 2px 0; }
+
+        /* --- TYPOGRAPHY ENGINE --- */
+        .category {
+            font-family: 'Cinzel';
+            font-size: clamp(0.6rem, 2vw, 0.75rem);
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            color: var(--gold-vivid);
+            margin-bottom: 20px;
+            display: block;
+            font-weight: 700;
+            text-shadow: 1px 1px 0px white;
+        }
+
+        .main-script {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(3rem, 10vw, 5.5rem);
+            margin-bottom: clamp(20px, 5vh, 40px);
+            background: linear-gradient(135deg, #3d2b1f, #bc6c74);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 4px 4px rgba(0,0,0,0.1));
+        }
+
+        /* --- FORM ELEMENTS --- */
+        .input-group {
+            position: relative;
+            margin-bottom: clamp(30px, 8vh, 60px);
+        }
+
+        .input-lux {
+            width: 100%;
+            background: none;
+            border: none;
+            border-bottom: 2px solid rgba(212, 163, 115, 0.3);
+            padding: 15px 0;
+            font-family: 'Bad Script', cursive;
+            font-size: clamp(1.5rem, 5vw, 2.2rem);
+            text-align: center;
+            color: var(--ink);
+            outline: none;
+            transition: 0.5s;
+        }
+
+        .input-lux:focus {
+            border-bottom-color: var(--rose-dust);
+            text-shadow: 0 0 5px rgba(188, 108, 116, 0.2);
+        }
+
+        .actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .btn-premium {
+            padding: clamp(15px, 3vh, 25px);
+            background: rgba(255,255,255,0.5);
+            border: 1px solid var(--gold-primary);
+            color: var(--gold-vivid);
+            font-family: 'Montserrat';
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            cursor: pointer;
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            z-index: 10;
+        }
+
+        .btn-premium:hover {
+            background: var(--gold-primary);
+            color: white;
+            box-shadow: 0 15px 30px rgba(212, 163, 115, 0.3);
+            transform: translateY(-5px);
+        }
+
+        /* --- FINAL LETTER (VISIBLE & CRISP) --- */
+        #final-letter {
+            display: none;
+            opacity: 0;
+            transform: translateZ(-100px);
+            transition: var(--transition-ultra);
+        }
+
+        .letter-content {
+            font-family: 'Bad Script', cursive;
+            font-size: clamp(1.1rem, 4vw, 1.6rem);
+            line-height: 1.8;
+            text-align: left;
+            color: var(--ink);
+            margin-bottom: 40px;
+            /* Усиленный контраст текста */
+            text-shadow: 0.5px 0.5px 0px rgba(255,255,255,0.8);
+            position: relative;
+            z-index: 20;
+        }
+
+        .hand-sig {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(2rem, 6vw, 3.2rem);
+            text-align: right;
+            color: var(--rose-dust);
+            margin-top: 10px;
+            text-shadow: 2px 2px 0px rgba(255,255,255,0.5);
+        }
+
+        .btn-share {
+            width: 100%;
+            background: linear-gradient(135deg, var(--rose-dust), #a6565e);
+            color: #fff;
+            padding: 22px;
+            border: none;
+            font-family: 'Montserrat';
+            font-weight: 900;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            cursor: pointer;
+            border-radius: 4px;
+            box-shadow: 0 10px 25px rgba(188, 108, 116, 0.4);
+            margin-top: 30px;
+        }
+
+        /* --- RESPONSIVE FIXES --- */
+        @media (max-width: 480px) {
+            .envelope-card { padding: 40px 25px; border-radius: 0; border-left: none; border-right: none; }
+            .c-pointer, .c-ring { display: none; }
+            .actions { grid-template-columns: 1fr; }
+            .corner { width: 30px; height: 30px; }
+        }
+
+        @media (min-width: 1200px) {
+            .envelope-card { max-width: 700px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="wm-grid"></div>
+    <div class="light-bloom" id="bloom"></div>
+    <div class="c-pointer" id="p"></div>
+    <div class="c-ring" id="r"></div>
+    <canvas id="particle-canvas"></canvas>
+
+    <div class="stage">
+        <div class="envelope-card" id="card">
+            <div class="corner tl"></div><div class="corner tr"></div>
+            <div class="corner bl"></div><div class="corner br"></div>
+            
+            <div id="setup">
+                <span class="category">Exclusive Valentine // 2026</span>
+                <h1 class="main-script">Sincerity</h1>
+                
+                <div class="input-group">
+                    <input type="text" id="target" class="input-lux" placeholder="Введите имя..." maxlength="18">
+                </div>
+
+                <div class="actions">
+                    <button class="btn-premium" onclick="awaken('boy')">Для Него</button>
+                    <button class="btn-premium" onclick="awaken('girl')">Для Нее</button>
+                </div>
+                
+                <p style="margin-top: 50px; font-size: 0.55rem; letter-spacing: 3px; opacity: 0.5; font-family: 'Montserrat'; font-weight: 900; text-align: center; color: var(--gold-vivid);">BY VAMP @MCGEP</p>
+            </div>
+
+            <div id="final-letter">
+                <div class="letter-content" id="typewriter"></div>
+                <div class="hand-sig">С любовью, навсегда</div>
+                
+                <button class="btn-share" onclick="shareSession()">ОТПРАВИТЬ МОМЕНТ</button>
+                <p style="font-size: 0.65rem; margin-top: 30px; opacity: 0.6; cursor: pointer; text-align: center; font-family: 'Montserrat'; font-weight: 700; text-transform: uppercase; color: var(--ink);" onclick="location.reload()">Написать новое</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /**
+         * VAMP CORE ENGINE 8.0
+         */
+
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        let mouse = { x: null, y: null };
+
+        // 1. Particle Logic (Enhanced)
+        function initCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.onresize = initCanvas;
+        initCanvas();
+
+        class Particle {
+            constructor() {
+                this.reset();
+            }
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 3 + 1;
+                this.speedX = (Math.random() - 0.5) * 0.8;
+                this.speedY = (Math.random() - 0.5) * 0.8;
+                this.color = Math.random() > 0.5 ? '#d4a373' : '#bc6c74';
+                this.opacity = Math.random() * 0.5 + 0.1;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                
+                if (mouse.x) {
+                    let dx = mouse.x - this.x;
+                    let dy = mouse.y - this.y;
+                    let dist = Math.sqrt(dx*dx + dy*dy);
+                    if (dist < 200) {
+                        this.x += dx * 0.02;
+                        this.y += dy * 0.02;
+                    }
+                }
+
+                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+            }
+            draw() {
+                ctx.globalAlpha = this.opacity;
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        for(let i=0; i<120; i++) particles.push(new Particle());
+
+        function animate() {
+            ctx.clearRect(0,0, canvas.width, canvas.height);
+            particles.forEach(p => { p.update(); p.draw(); });
+            requestAnimationFrame(animate);
+        }
+        animate();
+
+        // 2. Interaction & Tilt
+        const bloom = document.getElementById('bloom');
+        const p_dot = document.getElementById('p');
+        const r_dot = document.getElementById('r');
+        const card = document.getElementById('card');
+        const wmGrid = document.getElementById('wm-grid');
+
+        // Render Watermarks
+        for(let i=0; i<120; i++) {
+            const el = document.createElement('div');
+            el.className = 'wm-tag';
+            el.innerText = 'Vamp @mcgep';
+            wmGrid.appendChild(el);
+        }
+
+        document.addEventListener('mousemove', (e) => {
+            const { clientX: x, clientY: y } = e;
+            mouse.x = x; mouse.y = y;
+            
+            p_dot.style.left = x + 'px'; p_dot.style.top = y + 'px';
+            r_dot.style.left = x - 22 + 'px'; r_dot.style.top = y - 22 + 'px';
+            
+            bloom.style.transform = `translate(${x - window.innerWidth/2}px, ${y - window.innerHeight/2}px)`;
+
+            const xRotation = (window.innerHeight / 2 - y) / 40;
+            const yRotation = (window.innerWidth / 2 - x) / 40;
+            card.style.transform = `rotateX(${xRotation}deg) rotateY(${-yRotation}deg)`;
+        });
+
+        // 3. Emotional AI Library
+        const library = {
+            pre: [
+                "Я долго искал(а) способ передать то, что не умещается в обычные слова...",
+                "В этом мире, где всё меняется слишком быстро, ты — моя единственная константа.",
+                "Иногда мне кажется, что вся музыка в мире написана про тебя...",
+                "Я хочу, чтобы это письмо стало для тебя напоминанием о том, как ты важен(на)."
+            ],
+            mid: {
+                boy: [
+                    "Твоя уверенность и внутренняя сила — это мой покой. Ты не просто рядом, ты создаешь мир, в котором мне всегда хочется быть.",
+                    "В тебе есть удивительная глубина и честность, которая восхищает меня каждый день. Ты — тот, на кого я всегда могу положиться.",
+                    "Твой голос и твоя поддержка — это то, что дает мне силы двигаться вперед. Ты делаешь меня лучше."
+                ],
+                girl: [
+                    "В твоей улыбке я нахожу ответы на все свои вопросы. Ты — удивительное сочетание хрупкости и невероятной жизненной энергии.",
+                    "Твой свет делает этот мир добрее, а мою жизнь — наполненной смыслом. Ты вдохновляешь меня каждым своим жестом.",
+                    "Твоя нежность обладает невероятной силой. Рядом с тобой я чувствую, что всё по-настоящему."
+                ]
+            },
+            post: [
+                "Спасибо за каждый момент. Ты — лучшее, что со мной случилось.",
+                "Пусть это тепло согревает тебя, даже когда нас разделяет расстояние.",
+                "С 14 февраля. Моё сердце всегда бьется в унисон с твоим.",
+                "Я просто люблю тебя. Просто будь рядом."
+            ]
+        };
+
+        function awaken(type) {
+            const name = document.getElementById('target').value.trim() || "Душа моя";
+            const setup = document.getElementById('setup');
+            const letter = document.getElementById('final-letter');
+            const typewriter = document.getElementById('typewriter');
+
+            const text = `${library.pre[Math.floor(Math.random()*library.pre.length)]}\n\n${name}, ${library.mid[type][Math.floor(Math.random()*library.mid[type].length)]}\n\n${library.post[Math.floor(Math.random()*library.post.length)]}`;
+
+            setup.style.opacity = '0';
+            setup.style.transform = 'translateZ(-200px) rotateX(20deg)';
+
+            setTimeout(() => {
+                setup.style.display = 'none';
+                letter.style.display = 'block';
+                
+                let i = 0;
+                typewriter.innerHTML = "";
+                function typing() {
+                    if (i < text.length) {
+                        typewriter.innerHTML += text.charAt(i) === '\n' ? '<br>' : text.charAt(i);
+                        i++;
+                        setTimeout(typing, 35);
+                    }
+                }
+                typing();
+                
+                setTimeout(() => {
+                    letter.style.opacity = '1';
+                    letter.style.transform = 'translateZ(0)';
+                    launchHearts();
+                }, 100);
+            }, 1200);
+
+            const u = new URL(window.location.href);
+            u.searchParams.set('n', name);
+            u.searchParams.set('t', type);
+            window.finalLink = u.toString();
+        }
+
+        function launchHearts() {
+            setInterval(() => {
+                const h = document.createElement('div');
+                h.style.position = 'fixed';
+                h.style.zIndex = '100';
+                h.style.left = Math.random() * 100 + 'vw';
+                h.style.top = '105vh';
+                h.style.fontSize = Math.random() * 20 + 10 + 'px';
+                h.innerText = Math.random() > 0.5 ? '🌸' : '🌹';
+                h.style.transition = `all ${Math.random()*3 + 4}s linear`;
+                document.body.appendChild(h);
+
+                setTimeout(() => {
+                    h.style.transform = `translateY(-110vh) rotate(${Math.random()*360}deg)`;
+                    h.style.opacity = '0';
+                }, 100);
+                setTimeout(() => h.remove(), 7000);
+            }, 400);
+        }
+
+        function shareSession() {
+            navigator.clipboard.writeText(window.finalLink || window.location.href);
+            alert("Ссылка скопирована. Поделись своей искренностью!");
+        }
+
+        window.onload = () => {
+            const p = new URLSearchParams(window.location.search);
+            if (p.has('n') && p.has('t')) {
+                setTimeout(() => awaken(p.get('t')), 500);
+            }
+        };
+    </script>
+</body>
+</html>
